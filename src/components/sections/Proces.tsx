@@ -78,7 +78,7 @@ function StepDot({
       <motion.span
         aria-hidden
         style={{ scale, opacity }}
-        className="h-3 w-3 rounded-full bg-terracotta shadow-[0_0_0_3px_rgba(17,16,16,1)]"
+        className="h-3 w-3 rounded-full bg-terracotta shadow-[0_0_0_3px_rgba(245,240,232,1)]"
       />
     </span>
   );
@@ -93,18 +93,18 @@ export function Proces() {
   const lineScaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <Section tone="dark" id="proces" className="py-24 lg:py-32">
+    <Section tone="cream" id="proces" className="py-24 lg:py-32">
       <Container size="wide">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-[minmax(0,460px)_minmax(0,1fr)] lg:gap-24">
           {/* LEFT — sticky pitch */}
           <div className="lg:sticky lg:top-24 lg:self-start">
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,4.2vw,3.625rem)] font-bold leading-[1.0] tracking-[-0.03em] text-cream">
+            <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,4.2vw,3.625rem)] font-bold leading-[1.0] tracking-[-0.03em] text-heading">
               Cztery kroki
               <br />
               współpracy.
             </h2>
 
-            <p className="mt-9 max-w-[460px] text-[18px] leading-[1.6] tracking-[-0.005em] text-cream/65">
+            <p className="mt-9 max-w-[460px] text-[18px] leading-[1.6] tracking-[-0.005em] text-heading/65">
               Od pierwszego spotkania do działającej strony. Od działającej
               strony do pierwszej rezerwacji bezpośredniej. Reszta to
               optymalizacja na podstawie danych — nie wiary.
@@ -118,10 +118,10 @@ export function Proces() {
               <div className="text-[10px] font-medium uppercase tracking-[0.2em] text-terracotta">
                 Twój wkład w procesie
               </div>
-              <div className="mt-3 font-[family-name:var(--font-display)] text-[28px] font-bold leading-[1.1] tracking-[-0.03em] text-cream">
+              <div className="mt-3 font-[family-name:var(--font-display)] text-[28px] font-bold leading-[1.1] tracking-[-0.03em] text-heading">
                 ~3 godziny w 3 tygodniach.
               </div>
-              <p className="mt-3 text-[13px] leading-[1.5] text-cream/55">
+              <p className="mt-3 text-[13px] leading-[1.5] text-heading/55">
                 Reszta spoczywa na nas. Bez tygodni czekania na feedback.
               </p>
             </div>
@@ -136,7 +136,7 @@ export function Proces() {
               </span>
             </Link>
 
-            <p className="mt-5 text-[13px] text-cream/45">
+            <p className="mt-5 text-[13px] text-heading/45">
               ↳ pierwsze 60 minut bez zobowiązań — diagnoza GRATIS
             </p>
           </div>
@@ -145,7 +145,7 @@ export function Proces() {
           <div className="relative">
             <div
               aria-hidden
-              className="absolute -top-6 left-0 right-0 h-px bg-cream/10"
+              className="absolute -top-6 left-0 right-0 h-px bg-ink/10"
             />
 
             <div
@@ -155,7 +155,7 @@ export function Proces() {
               {/* Vertical baseline */}
               <span
                 aria-hidden
-                className="absolute left-[60px] top-2 bottom-2 w-px bg-cream/10 sm:left-[78px] lg:left-[88px]"
+                className="absolute left-[60px] top-2 bottom-2 w-px bg-ink/10 sm:left-[78px] lg:left-[88px]"
               />
               {/* Animated scroll progress line */}
               <motion.span
@@ -171,7 +171,7 @@ export function Proces() {
                   return (
                     <li key={k.n} className="relative">
                       {/* Step number — sits left of the line */}
-                      <span className="absolute -left-[88px] top-0 font-[family-name:var(--font-display)] text-[44px] font-light leading-none tracking-[-0.02em] text-cream/30 tabular-nums sm:-left-[110px] sm:text-[48px] lg:-left-[124px]">
+                      <span className="absolute -left-[88px] top-0 font-[family-name:var(--font-display)] text-[44px] font-light leading-none tracking-[-0.02em] text-heading/30 tabular-nums sm:-left-[110px] sm:text-[48px] lg:-left-[124px]">
                         {k.n}
                       </span>
 
@@ -187,17 +187,17 @@ export function Proces() {
                         <div className="text-[13px] font-medium uppercase tracking-[0.16em] text-terracotta">
                           {k.phase}
                         </div>
-                        <h3 className="mt-3 font-[family-name:var(--font-display)] text-[clamp(1.625rem,2.6vw,2.25rem)] font-bold leading-[1.1] tracking-[-0.025em] text-white">
+                        <h3 className="mt-3 font-[family-name:var(--font-display)] text-[clamp(1.625rem,2.6vw,2.25rem)] font-bold leading-[1.1] tracking-[-0.025em] text-heading">
                           {k.title}
                         </h3>
                         <span
                           aria-hidden
                           className="mt-5 block h-px w-9 bg-terracotta"
                         />
-                        <p className="mt-5 text-[17px] leading-[1.55] text-white/72">
+                        <p className="mt-5 text-[17px] leading-[1.55] text-heading/70">
                           {k.body}
                         </p>
-                        <p className="mt-5 text-[15px] text-white/85">
+                        <p className="mt-5 text-[15px] text-heading/80">
                           <span className="font-medium text-terracotta">
                             Twój wkład
                           </span>{" "}
@@ -212,9 +212,9 @@ export function Proces() {
 
             <div
               aria-hidden
-              className="absolute bottom-[-32px] left-0 right-0 h-px bg-cream/10"
+              className="absolute bottom-[-32px] left-0 right-0 h-px bg-ink/10"
             />
-            <p className="mt-12 pl-[88px] text-[11px] font-medium uppercase tracking-[0.18em] text-cream/40 sm:pl-[110px] lg:pl-[124px]">
+            <p className="mt-12 pl-[88px] text-[11px] font-medium uppercase tracking-[0.18em] text-heading/45 sm:pl-[110px] lg:pl-[124px]">
               ↳ Kolejny etap · Cennik
             </p>
           </div>

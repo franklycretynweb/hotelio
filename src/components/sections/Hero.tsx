@@ -1,13 +1,17 @@
+"use client";
+
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { TopNav } from "@/components/sections/TopNav";
 
-const trustBadges = [
-  "23 obiekty zrealizowane",
-  "20 lat doświadczenia",
-  "0 szablonów",
+const trust = [
+  { label: "23 obiekty zrealizowane" },
+  { label: "20 lat doświadczenia" },
+  { label: "0 szablonów", accent: true },
 ];
 
 function Stars() {
@@ -28,96 +32,99 @@ function Stars() {
 }
 
 export function Hero() {
+  const frameRef = useRef<HTMLDivElement>(null);
+  // Drive a gentle zoom from scroll progress through the hero: 0 when the
+  // hero top sits at the viewport top, 1 once the hero has scrolled fully
+  // past. The image scales up slightly as the user descends toward the
+  // steps — a subtle "walking in" feel, not a hard parallax.
+  const { scrollYProgress } = useScroll({
+    target: frameRef,
+    offset: ["start start", "end start"],
+  });
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
+
   return (
-    <Section
-      tone="dark"
-      id="hero"
-      className="relative flex min-h-svh flex-col overflow-hidden"
-    >
-      <TopNav />
-
-      <Container
-        size="wide"
-        className="grid flex-1 grid-cols-1 items-center gap-12 pt-28 pb-16 lg:grid-cols-[1.05fr_1fr] lg:gap-20 lg:pt-24 lg:pb-20"
+    <Section tone="cream" id="hero" className="relative w-full overflow-hidden">
+      {/* The concierge shot is authored at 3584:3153 — marble columns frame the
+          edges, a tall cream wall fills the top (where the copy sits) and the
+          terracotta steps + palms anchor the bottom. We honor that exact ratio
+          so the whole image shows, uncropped; the copy overlays the upper wall. */}
+      <div
+        ref={frameRef}
+        className="relative w-full aspect-[3584/3153] overflow-hidden"
       >
-        {/* Left column: copy + CTAs + trust badges */}
-        <div className="flex flex-col">
-          <h1 className="whitespace-nowrap font-[family-name:var(--font-display)] font-extrabold leading-[0.95] tracking-[-0.025em] text-cream text-[clamp(2.25rem,5.4vw,5.5rem)]">
-            Strony internetowe
-            <br />
-            Hoteli,
-            <br />
-            Pensjonatów,
-            <br />
-            Apartamentów.
-          </h1>
+        <motion.div
+          aria-hidden
+          style={{ scale }}
+          className="absolute inset-0 z-0 origin-center will-change-transform"
+        >
+          <Image
+            src="/img/concierge-2.webp"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        </motion.div>
+        <TopNav />
 
-          <p className="mt-8 max-w-xl text-[15px] leading-relaxed text-cream/65 sm:text-base">
-            Projektujemy strony hotelowe które zwiększają udział rezerwacji
-            bezpośrednich. Bez prowizji OTA, bez szablonów, bez kompromisów
-            technicznych.
-          </p>
+        <Container
+          size="wide"
+          className="relative z-10 flex flex-col items-center pt-[clamp(7rem,13vw,12rem)] text-center"
+        >
+        <h1 className="font-[family-name:var(--font-display)] font-normal leading-[1.04] tracking-[-0.02em] text-heading text-[clamp(2.5rem,6vw,5.25rem)]">
+          Strony internetowe dla
+          <br />
+          Hoteli, Pensjonatów,
+          <br />
+          Apartamentów
+        </h1>
 
-          <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
-            <Link
-              href="#cta"
-              className="group inline-flex h-14 items-center gap-3 rounded-md bg-terracotta pl-6 pr-3 text-[15px] font-medium text-cream transition-colors hover:bg-terracotta-warm"
-            >
-              Bezpłatna konsultacja
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-cream/15 text-cream transition-transform group-hover:translate-x-0.5">
-                →
-              </span>
-            </Link>
+        <p className="mt-7 max-w-xl text-[15px] font-semibold leading-[1.55] text-heading/75 sm:text-base">
+          Projektujemy strony hotelowe które zwiększają udział rezerwacji
+          bezpośrednich. Bez prowizji OTA, bez szablonów, bez kompromisów
+          technicznych.
+        </p>
 
-            <span className="text-cream/40">lub</span>
-
-            <Link
-              href="#atuty"
-              className="inline-flex items-center gap-2 text-[14px] font-medium text-cream/80 underline underline-offset-[6px] decoration-cream/30 hover:decoration-cream"
-            >
-              zobacz realizacje
-              <span aria-hidden>→</span>
-            </Link>
-          </div>
-
-          <div className="mt-10 flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] text-cream/55">
-            <span className="inline-flex items-center gap-2">
-              <Stars />
-              <span className="font-medium text-cream">4.9</span>
+        <div className="mt-9 flex flex-wrap items-center justify-center gap-x-6 gap-y-4">
+          <Link
+            href="#cta"
+            className="group inline-flex h-14 items-center gap-3 rounded-md bg-terracotta pl-6 pr-3 text-[15px] font-medium text-cream transition-colors hover:bg-terracotta-warm"
+          >
+            Bezpłatna konsultacja
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-ink text-cream transition-transform group-hover:translate-x-0.5">
+              →
             </span>
-            {trustBadges.map((badge) => (
-              <span key={badge} className="inline-flex items-center gap-3">
-                <span aria-hidden className="h-1 w-1 rounded-full bg-cream/30" />
-                {badge}
-              </span>
-            ))}
-          </div>
+          </Link>
+
+          <span className="text-heading/40">lub</span>
+
+          <Link
+            href="#atuty"
+            className="inline-flex items-center gap-2 text-[14px] font-semibold text-heading/80 underline underline-offset-[6px] decoration-heading/30 hover:decoration-heading"
+          >
+            zobacz realizacje
+            <span aria-hidden>→</span>
+          </Link>
         </div>
 
-        {/* Right column: device mockups. Absolute on lg so the iPhone overlaps the iMac like in Figma. */}
-        <div className="relative mx-auto w-full max-w-xl lg:max-w-none">
-          <div className="relative aspect-[908/767] w-full">
-            <Image
-              src="/img/hero-imac.png"
-              alt=""
-              fill
-              priority
-              sizes="(min-width: 1024px) 50vw, 90vw"
-              className="object-contain"
-            />
-            <div className="absolute right-[-4%] bottom-[-8%] aspect-[274/570] w-[26%]">
-              <Image
-                src="/img/hero-iphone.png"
-                alt=""
-                fill
-                priority
-                sizes="(min-width: 1024px) 13vw, 23vw"
-                className="object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.4)]"
-              />
-            </div>
-          </div>
+        <div className="mt-9 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[13px] text-heading/60">
+          <span className="inline-flex items-center gap-2">
+            <Stars />
+            <span className="font-semibold text-heading">4.9</span>
+          </span>
+          {trust.map((item) => (
+            <span key={item.label} className="inline-flex items-center gap-3">
+              <span aria-hidden className="h-1 w-1 rounded-full bg-heading/30" />
+              <span className={item.accent ? "text-terracotta" : undefined}>
+                {item.label}
+              </span>
+            </span>
+          ))}
         </div>
-      </Container>
+        </Container>
+      </div>
     </Section>
   );
 }

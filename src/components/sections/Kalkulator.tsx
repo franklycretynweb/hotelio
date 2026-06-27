@@ -21,7 +21,7 @@ function formatPln(n: number) {
 function InfoDot({ label }: { label: string }) {
   return (
     <span
-      className="inline-flex h-3.5 w-3.5 items-center justify-center rounded-full border border-ink-2/30 text-ink-2/55"
+      className="inline-flex h-3.5 w-3.5 items-center justify-center rounded-full border border-heading/30 text-heading/55"
       aria-label={label}
     >
       <Info aria-hidden className="h-2 w-2" strokeWidth={2.25} />
@@ -53,7 +53,7 @@ function PillSlider({
       <div className="mb-3 flex items-center gap-2">
         <label
           htmlFor={id}
-          className="text-[14px] font-medium text-ink-2/85"
+          className="text-[14px] font-medium text-heading/85"
         >
           {label}
         </label>
@@ -72,7 +72,7 @@ function PillSlider({
           animate={{ left: `calc(${Math.max(pct, 3)}% - 2px)` }}
           transition={{ type: "spring", stiffness: 320, damping: 32 }}
         />
-        <span className="pointer-events-none absolute right-[22px] top-1/2 -translate-y-1/2 text-[15px] font-semibold tabular-nums text-ink-2/75">
+        <span className="pointer-events-none absolute right-[22px] top-1/2 -translate-y-1/2 text-[15px] font-semibold tabular-nums text-heading/75">
           {display}
         </span>
         <input
@@ -106,7 +106,7 @@ function Segmented({
   return (
     <div>
       <div className="mb-3 flex items-center gap-2">
-        <span className="text-[14px] font-medium text-ink-2/85">{label}</span>
+        <span className="text-[14px] font-medium text-heading/85">{label}</span>
         <InfoDot label={`Więcej o: ${label}`} />
       </div>
       <div
@@ -125,7 +125,7 @@ function Segmented({
               onClick={() => onChange(opt)}
               className={cn(
                 "relative flex h-full items-center justify-center text-[15px] font-semibold tabular-nums transition-colors duration-200",
-                active ? "text-cream" : "text-ink-2/55 hover:text-ink-2/80",
+                active ? "text-cream" : "text-heading/55 hover:text-heading/80",
               )}
             >
               {active && (
@@ -279,13 +279,13 @@ export function Kalkulator() {
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-[1fr_minmax(0,556px)] lg:items-start lg:gap-20">
           {/* LEFT — header + inputs */}
           <div className="flex flex-col">
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,6.5vw,5rem)] font-bold leading-[0.89] tracking-[-0.03em] text-ink-muted">
+            <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,6.5vw,5rem)] font-bold leading-[0.89] tracking-[-0.03em] text-heading">
               Ile możesz
               <br />
               zarobić więcej?
             </h2>
 
-            <p className="mt-8 max-w-[520px] text-[18px] font-semibold leading-[1.45] text-ink-2/65">
+            <p className="mt-8 max-w-[520px] text-[18px] font-semibold leading-[1.45] text-heading/65">
               Wpisz parametry swojego hotelu. Policzymy ile rocznie zostawiasz
               na stole Bookingowi.
             </p>
@@ -329,12 +329,12 @@ export function Kalkulator() {
                 aria-hidden
                 className="h-[6px] w-[6px] flex-none rounded-full bg-terracotta"
               />
-              <span className="text-[13px] font-medium text-ink-2/75">
+              <span className="text-[13px] font-medium text-heading/75">
                 Cel: 25% rezerwacji OTA → kanał bezpośredni
               </span>
             </div>
 
-            <p className="mt-4 text-[11px] tracking-[0.025em] text-ink-2/40">
+            <p className="mt-4 text-[11px] tracking-[0.025em] text-heading/40">
               Zakładamy przesunięcie 25% rez. OTA na bezpośrednie. Prowizja
               OTA: 15–17%.
             </p>
@@ -417,7 +417,7 @@ export function Kalkulator() {
               </div>
             </div>
 
-            <p className="text-center text-[13px] text-ink-2/50">
+            <p className="text-center text-[13px] text-heading/50">
               Booking nadal działa. Po prostu Twoja strona też.
             </p>
 

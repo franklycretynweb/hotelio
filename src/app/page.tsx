@@ -1,4 +1,5 @@
 import { Atuty } from "@/components/sections/Atuty";
+import { Cennik } from "@/components/sections/Cennik";
 import { Cta } from "@/components/sections/Cta";
 import { Footer } from "@/components/sections/Footer";
 import { Hero } from "@/components/sections/Hero";
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <Cennik />
       <Atuty />
       <MiniShowcase />
       <Proces />

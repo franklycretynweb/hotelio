@@ -5,7 +5,7 @@ import { Section } from "@/components/ui/section";
 
 export function Cta() {
   return (
-    <Section tone="dark" id="cta" className="py-24 lg:py-28">
+    <Section tone="cream" id="cta" className="py-24 lg:py-28">
       <Container size="wide">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
           <div className="relative mx-auto aspect-square w-full max-w-[360px] lg:max-w-[420px]">
@@ -14,15 +14,15 @@ export function Cta() {
               alt=""
               fill
               sizes="(min-width: 1024px) 30vw, 80vw"
-              className="object-contain invert"
+              className="object-contain"
             />
           </div>
 
           <div className="max-w-2xl">
-            <p className="font-[family-name:var(--font-display)] text-[clamp(1.5rem,2.6vw,2.25rem)] font-bold leading-[1.2] tracking-tight text-cream">
+            <p className="font-[family-name:var(--font-display)] text-[clamp(1.5rem,2.6vw,2.25rem)] font-bold leading-[1.2] tracking-tight text-heading">
               Wiesz już ile kosztuje Cię ten status quo.
               <br className="hidden lg:block" />
-              <span className="text-cream/65">
+              <span className="text-heading/65">
                 {" "}Zmiana nie wymaga rezygnacji z Bookingu — wymaga własnego
                 kanału, który zarabia obok niego.
               </span>

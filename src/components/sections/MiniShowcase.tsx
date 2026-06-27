@@ -119,7 +119,7 @@ export function MiniShowcase() {
       <Container size="wide">
         <div className="mb-12 max-w-3xl">
           <Eyebrow number="02">Realizacje</Eyebrow>
-          <h2 className="mt-5 font-[family-name:var(--font-display)] text-[clamp(2.25rem,4.5vw,3.75rem)] font-bold leading-[1.05] tracking-tight text-ink">
+          <h2 className="mt-5 font-[family-name:var(--font-display)] text-[clamp(2.25rem,4.5vw,3.75rem)] font-bold leading-[1.05] tracking-tight text-heading">
             Strony, które już sprzedają.
           </h2>
         </div>

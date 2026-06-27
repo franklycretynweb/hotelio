@@ -40,7 +40,7 @@ export function Footer() {
             <Link href="/" className="block w-[200px]">
               <Logo variant="ink" />
             </Link>
-            <p className="mt-6 max-w-sm text-[14px] leading-relaxed text-ink/60">
+            <p className="mt-6 max-w-sm text-[14px] leading-relaxed text-heading/60">
               Strony internetowe Hoteli, Pensjonatów, Apartamentów. Robimy je w
               SSI Szczecin — od 20 lat zajmujemy się tym, czego nie da się
               zlecić templatce.
@@ -58,7 +58,7 @@ export function Footer() {
                     <li key={link.label}>
                       <Link
                         href={link.href}
-                        className="text-[14px] text-ink/75 transition-colors hover:text-ink"
+                        className="text-[14px] text-heading/75 transition-colors hover:text-heading"
                       >
                         {link.label}
                       </Link>
@@ -70,7 +70,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-ink/10 pt-6 text-[12px] text-ink/45 md:flex-row md:items-center">
+        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-ink/10 pt-6 text-[12px] text-heading/45 md:flex-row md:items-center">
           <span>© {new Date().getFullYear()} SSI Sp. z o.o. — wszystkie prawa zastrzeżone.</span>
           <span>hotelio. jest sub-marką SSI Szczecin.</span>
         </div>

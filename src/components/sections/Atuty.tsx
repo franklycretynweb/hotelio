@@ -139,19 +139,6 @@ const ITEMS: AtutItem[] = [
   },
 ];
 
-function SectionHeader() {
-  return (
-    <div className="flex flex-col">
-      <div className="text-[12px] uppercase tracking-[0.22em] text-cream/45">
-        Twoja strona hotelowa
-      </div>
-      <h2 className="mt-5 whitespace-nowrap font-[family-name:var(--font-display)] text-[clamp(2.5rem,4.8vw,5rem)] font-bold leading-[1.05] tracking-[-0.025em] text-cream">
-        Co znajdziesz w&nbsp;gotowej stronie.
-      </h2>
-    </div>
-  );
-}
-
 function Accordion({
   items,
   activeId,
@@ -163,7 +150,19 @@ function Accordion({
 }) {
   return (
     <div className="flex flex-col">
-      <ul className="flex flex-col">
+      {/* Header — eyebrow + H2 live inside the accordion column (clerk.com
+          layout). H2 wraps naturally to ~2 lines in the column's width. */}
+      <div className="text-[12px] uppercase tracking-[0.22em] text-terracotta">
+        Twoja strona hotelowa
+      </div>
+      <h2
+        className="mt-5 font-[family-name:var(--font-display)] text-[clamp(2.25rem,3.2vw,3.25rem)] font-bold leading-[1.04] tracking-[-0.025em] text-heading"
+        style={{ textWrap: "balance" }}
+      >
+        Co znajdziesz w&nbsp;gotowej stronie.
+      </h2>
+
+      <ul className="mt-12 flex flex-col">
         {items.map((item, i) => {
           const open = item.id === activeId;
           return (
@@ -171,30 +170,41 @@ function Accordion({
               key={item.id}
               className={cn(
                 "relative border-l-2 transition-colors duration-300",
-                open ? "border-terracotta" : "border-cream/10",
+                open ? "border-terracotta" : "border-ink/10",
               )}
             >
               <button
                 type="button"
                 onClick={() => onSelect(item.id)}
                 aria-expanded={open}
-                className="flex w-full items-start gap-7 py-6 pl-8 pr-2 text-left"
+                className="flex w-full items-start gap-6 py-5 pl-7 pr-3 text-left"
               >
                 <span
                   className={cn(
-                    "mt-[6px] font-[family-name:var(--font-display)] text-[13px] font-medium tabular-nums tracking-[0.12em] transition-colors duration-300",
-                    open ? "text-terracotta" : "text-cream/35",
+                    "mt-[5px] font-[family-name:var(--font-display)] text-[13px] font-medium tabular-nums tracking-[0.12em] transition-colors duration-300",
+                    open ? "text-terracotta" : "text-heading/40",
                   )}
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span
                   className={cn(
-                    "flex-1 font-[family-name:var(--font-display)] text-[20px] font-medium leading-[1.3] transition-colors duration-300",
-                    open ? "text-cream" : "text-cream/50",
+                    "flex-1 font-[family-name:var(--font-display)] text-[19px] font-medium leading-[1.3] transition-colors duration-300",
+                    open ? "text-heading" : "text-heading/50",
                   )}
                 >
                   {item.title}
+                </span>
+                <span
+                  aria-hidden
+                  className={cn(
+                    "mt-[8px] inline-block text-[10px] leading-none transition-all duration-300",
+                    open
+                      ? "rotate-180 text-terracotta"
+                      : "rotate-0 text-heading/40",
+                  )}
+                >
+                  ▾
                 </span>
               </button>
               <motion.div
@@ -203,7 +213,7 @@ function Accordion({
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                 className="overflow-hidden"
               >
-                <p className="pb-7 pl-[70px] pr-4 text-[15px] leading-[1.6] text-cream/60">
+                <p className="pb-6 pl-[66px] pr-6 text-[14px] leading-[1.6] text-heading/60">
                   {item.body}
                 </p>
               </motion.div>
@@ -223,7 +233,7 @@ function CanvasCard({
   active: boolean;
 }) {
   const isMain = entry.kind === "main";
-  const opacity = isMain ? (active ? 1 : 0.28) : 0.18;
+  const opacity = isMain ? (active ? 1 : 0.34) : 0.24;
   return (
     <motion.div
       animate={{ opacity }}
@@ -277,17 +287,13 @@ export function Atuty() {
   const cy = activeEntry.y + activeEntry.h / 2;
 
   return (
-    <Section tone="dark" id="atuty" className="relative overflow-hidden py-24 lg:py-32">
+    <Section tone="cream" id="atuty" className="relative overflow-hidden py-24 lg:py-32">
       {/* Container keeps the accordion aligned with the rest of the page
           (max-w 1440 + lg:px-12). Canvas bleeds out beyond the container's
           right padding via negative `right` so cards reach the viewport edge
           like on clerk.com, while the left padding rhythm is preserved. */}
       <Container size="wide" className="relative">
-        {/* Section header — outside grid, spans full container width so the
-            long H2 can sit on one line. */}
-        <SectionHeader />
-
-        <div className="mt-14 grid grid-cols-1 gap-14 lg:mt-20 lg:grid-cols-[minmax(0,400px)_minmax(0,1fr)] lg:items-stretch lg:gap-16">
+        <div className="grid grid-cols-1 gap-14 lg:grid-cols-[minmax(0,440px)_minmax(0,1fr)] lg:items-stretch lg:gap-16">
           <Accordion items={ITEMS} activeId={active} onSelect={setActive} />
 
           <div
@@ -327,22 +333,23 @@ export function Atuty() {
                 ))}
               </motion.div>
 
-              {/* Radial ink fade — soft circular focus, hard ink at edges */}
+              {/* Radial cream fade — soft circular focus, dissolving the dark
+                  bento tiles into the cream section toward the edges. */}
               <div
                 aria-hidden
                 className="pointer-events-none absolute inset-0"
                 style={{
                   background:
-                    "radial-gradient(ellipse 45% 55% at 50% 50%, rgba(17,16,16,0) 0%, rgba(17,16,16,0) 26%, rgba(17,16,16,0.4) 48%, rgba(17,16,16,0.82) 70%, var(--ink) 90%)",
+                    "radial-gradient(ellipse 45% 55% at 50% 50%, rgba(245,240,232,0) 0%, rgba(245,240,232,0) 26%, rgba(245,240,232,0.4) 48%, rgba(245,240,232,0.82) 70%, var(--cream) 90%)",
                 }}
               />
-              {/* Left edge ink wipe — dissolves cards near the accordion */}
+              {/* Left edge cream wipe — dissolves cards near the accordion */}
               <div
                 aria-hidden
                 className="pointer-events-none absolute inset-y-0 left-0 w-[10%]"
                 style={{
                   background:
-                    "linear-gradient(to right, var(--ink) 0%, rgba(17,16,16,0.55) 60%, rgba(17,16,16,0) 100%)",
+                    "linear-gradient(to right, var(--cream) 0%, rgba(245,240,232,0.55) 60%, rgba(245,240,232,0) 100%)",
                 }}
               />
             </div>

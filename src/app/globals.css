@@ -1,5 +1,53 @@
-@import url("https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,700,500,400&f[]=satoshi@900,700,500,400&display=swap");
 @import "tailwindcss";
+
+/*
+  Switzer — single typeface for the whole site (replaces Cabinet Grotesk +
+  Satoshi). Loaded locally from /public/fonts. We only ship the weights the
+  UI actually uses (300–800) to keep the payload sane; add more @font-face
+  blocks here if a new weight is introduced.
+*/
+@font-face {
+  font-family: "Switzer";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/Switzer-Light.otf") format("opentype");
+}
+@font-face {
+  font-family: "Switzer";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/Switzer-Regular.otf") format("opentype");
+}
+@font-face {
+  font-family: "Switzer";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/Switzer-Medium.otf") format("opentype");
+}
+@font-face {
+  font-family: "Switzer";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/Switzer-Semibold.otf") format("opentype");
+}
+@font-face {
+  font-family: "Switzer";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/Switzer-Bold.otf") format("opentype");
+}
+@font-face {
+  font-family: "Switzer";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/Switzer-Extrabold.otf") format("opentype");
+}
 
 /*
   Hotelio tokens.
@@ -17,6 +65,11 @@
   --terracotta-2: #9b5233;
   --terracotta-warm: #d06125;
   --micro-red: #fc0239;
+
+  /* Switzer text colors — heading is the default ink for type on cream,
+     heading-muted is the second tone used in two-color h1/h2 splits. */
+  --heading: #3b3734;
+  --heading-muted: #98938e;
 
   --bg: var(--cream);
   --fg: var(--ink-2);
@@ -37,8 +90,13 @@
   --color-bg: var(--bg);
   --color-fg: var(--fg);
 
-  --font-display: "Cabinet Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  --color-heading: var(--heading);
+  --color-heading-muted: var(--heading-muted);
+
+  /* Both tokens now resolve to Switzer — display/body split kept only so
+     existing section markup keeps working without edits. */
+  --font-display: "Switzer", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Switzer", ui-sans-serif, system-ui, sans-serif;
 }
 
 html,
